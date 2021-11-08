@@ -128,7 +128,7 @@ const characters = [
 const getHouses = (arr) => {
   let houses = [];
   // Solution code here...
-  arr.forEach((homes) => homes.push(homes.house));
+  arr.forEach((homes) => houses.push(homes.house));
   return houses;
 };
 
@@ -146,6 +146,11 @@ hasChildrenValues(characters, 'Sansa') will return false
 
 const hasChildrenValues = (arr, character) => {
   // Solution code here...
+  let entries = arr.map((idx) => Object.entries(idx));
+  return entries.find(
+    (idx) => idx[0][1] === character && idx.length > 3,
+    false
+  );
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -266,14 +271,14 @@ describe("Testing challenge 4", () => {
   });
 });
 
-xdescribe("Testing challenge 5", () => {
+describe("Testing challenge 5", () => {
   test("It should return an array of the names of the houses", () => {
     expect(getHouses(characters)[0]).toStrictEqual("Stark");
     expect(getHouses(characters).length).toStrictEqual(7);
   });
 });
 
-xdescribe("Testing challenge 6", () => {
+describe("Testing challenge 6", () => {
   test("It should return true for characters that have children", () => {
     expect(hasChildrenValues(characters, "Daenarys")).toBeTruthy();
   });
